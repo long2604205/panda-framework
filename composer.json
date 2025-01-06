@@ -1,5 +1,5 @@
 {
-  "name": "panda/panda-framework",
+  "name": "panda-dragon/panda-framework",
   "description": "The application using Panda framework",
   "autoload": {
     "psr-4": {
