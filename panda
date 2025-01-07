@@ -1,0 +1,35 @@
+#!/usr/bin/env php
+<?php
+
+use Commands\ServerCommand;
+
+require __DIR__ . '/vendor/autoload.php';
+
+// CLI entry point
+if (php_sapi_name() !== 'cli') {
+    exit("This script must be run from the command line.\n");
+}
+
+// Parse command
+$command = $argv[1] ?? null;
+$options = array_slice($argv, 2); // Lấy các tham số sau lệnh
+
+switch ($command) {
+    case 'server:start':
+        $port = 8000; // Default port
+
+        // Lấy giá trị port từ tham số --port=xxxx
+        foreach ($options as $option) {
+            if (preg_match('/^--port=(\d+)$/', $option, $matches)) {
+                $port = (int)$matches[1];
+            }
+        }
+
+        $serverCommand = new ServerCommand($port);
+        $serverCommand->start($port);
+        break;
+    default:
+        echo "Unknown command: {$command}\n";
+        echo "Available commands: server:start [--port=8000]\n";
+        break;
+}

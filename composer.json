@@ -12,6 +12,7 @@
     "files": []
   },
   "require": {
+    "php": "7.0",
     "panda/panda-core": "1.0.1"
   },
   "repositories": [
